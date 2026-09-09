@@ -1,0 +1,19 @@
+{
+  "name": "design-extractor",
+  "interface": {
+    "displayName": "Design Extractor"
+  },
+  "plugins": [
+    {
+      "name": "design-extractor",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "design-extractor",
+  "version": "0.1.0",
+  "description": "Extract a DESIGN.md from any public website through the Design Extractor MCP server and apply it to a codebase with the apply-designmd skill.",
+  "author": {
+    "name": "Magentix Studio",
+    "url": "https://www.design-extractor.com"
+  },
+  "homepage": "https://www.design-extractor.com/docs/agents",
+  "repository": "https://github.com/Magentix-Studio/design-extractor-plugin",
+  "license": "MIT",
+  "keywords": ["design", "design-system", "design-tokens", "designmd", "tailwind", "mcp"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Design Extractor",
+    "shortDescription": "DESIGN.md from any website, applied to your code",
+    "longDescription": "Extract a DESIGN.md (design tokens plus written guidance) from any public website through the Design Extractor MCP server, then map it onto Tailwind, CSS variables or a tokens file with the apply-designmd skill.",
+    "developerName": "Magentix Studio",
+    "category": "Creativity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://www.design-extractor.com",
+    "defaultPrompt": [
+      "Extract the design system of a website and apply it to this project",
+      "Rebuild the look of a reference site in Tailwind"
+    ]
+  }
+}

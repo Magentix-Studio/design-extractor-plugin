@@ -1,0 +1,16 @@
+{
+  "name": "design-extractor",
+  "displayName": "Design Extractor",
+  "version": "0.1.0",
+  "description": "Extract a DESIGN.md from any public website through the Design Extractor MCP server and apply it to a codebase with the apply-designmd skill.",
+  "author": {
+    "name": "Magentix Studio",
+    "url": "https://www.design-extractor.com"
+  },
+  "homepage": "https://www.design-extractor.com/docs/agents",
+  "repository": "https://github.com/Magentix-Studio/design-extractor-plugin",
+  "license": "MIT",
+  "keywords": ["design", "design-system", "design-tokens", "designmd", "tailwind", "mcp"],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills"
+}

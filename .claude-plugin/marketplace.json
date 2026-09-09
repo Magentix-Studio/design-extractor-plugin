@@ -1,0 +1,28 @@
+{
+  "name": "design-extractor",
+  "owner": {
+    "name": "Magentix Studio",
+    "url": "https://www.design-extractor.com"
+  },
+  "metadata": {
+    "description": "Design Extractor plugins for Claude Code.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "design-extractor",
+      "source": "./",
+      "description": "Extract a DESIGN.md from any public website through the Design Extractor MCP server and apply it to a codebase with the apply-designmd skill.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Magentix Studio",
+        "url": "https://www.design-extractor.com"
+      },
+      "homepage": "https://www.design-extractor.com/docs/agents",
+      "repository": "https://github.com/Magentix-Studio/design-extractor-plugin",
+      "license": "MIT",
+      "keywords": ["design", "design-system", "design-tokens", "designmd", "tailwind", "mcp"],
+      "category": "design"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "design-extractor": {
+      "type": "http",
+      "url": "https://www.design-extractor.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${DESIGN_EXTRACTOR_API_KEY}"
+      }
+    }
+  }
+}
