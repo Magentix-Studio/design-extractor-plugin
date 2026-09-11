@@ -30,14 +30,17 @@ do not try to scrape the site yourself.
    pages and suits a whole product or marketing site. `get_credits` shows the
    balance.
 2. Call `extract_design` with `url` (the public page, https) and `tier`
-   (`LITE` or `PRO`). It returns `publicId`, a status and the result URL on
-   the site (`/extract/<publicId>`). This spends credits, so call it once per
-   site. Only public pages work: no localhost, no pages behind a login.
-3. Call `get_extraction` with the `publicId`. While the status is `QUEUED`
-   or `RUNNING`, wait about 15 seconds and call it again. Do not start a
-   second extraction of the same URL while one is running. When it is
-   `COMPLETED` the response contains the full DESIGN.md text. When it is
-   `FAILED` the response says why; report that to the user and stop.
+   (`LITE` or `PRO`). It returns a status and the result URL on the site.
+   This spends credits, so call it once per site. Only public pages work: no
+   localhost, no pages behind a login. Tell the user it takes at least a
+   minute.
+3. Wait about 60 seconds, then call `get_extraction` with `site` set to the
+   site the user named (a name or URL; never ask the user for an id). While
+   the status is `QUEUED` or `RUNNING`, wait 25 seconds and call it again.
+   Do not start a second extraction of the same URL while one is running.
+   When it is `COMPLETED` the response contains the full DESIGN.md text.
+   When it is `FAILED` the response says why; report that to the user and
+   stop.
 4. Save the text as `DESIGN.md` at the repo root unless the user asks for a
    different place. Commit nothing yet.
 
