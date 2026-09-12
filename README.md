@@ -7,9 +7,10 @@ and teaches it to apply a DESIGN.md.
 It ships two things:
 
 - The `design-extractor` MCP server connection (`.mcp.json`): the hosted server
-  at `https://www.design-extractor.com/api/mcp`, streamable HTTP, authenticated
-  with your personal API key. Tools: `get_pricing`, `get_credits`,
-  `extract_design`, `get_extraction`, `list_my_extractions`.
+  at `https://www.design-extractor.com/api/mcp`, streamable HTTP. You sign in
+  with your Design Extractor account the first time the agent connects; no key
+  to paste. Tools: `get_pricing`, `get_credits`, `extract_design`,
+  `get_extraction`, `list_my_extractions`.
 - The `apply-designmd` skill (`skills/apply-designmd/SKILL.md`): extract a
   DESIGN.md from a reference site, poll until it is complete, then map the
   tokens onto Tailwind v4 `@theme`, CSS variables or a design tokens JSON, wire
@@ -22,23 +23,19 @@ format is described at
 The agent setup guide for every client is at
 [design-extractor.com/docs/agents](https://www.design-extractor.com/docs/agents).
 
-## Get an API key
+## Sign in
 
-Sign in at [design-extractor.com](https://www.design-extractor.com), open
-[Account](https://www.design-extractor.com/account) and create a key in the
-"API keys" section. Keys start with `dx_`, are shown once, expire after one
-year and can be revoked there. Up to five active keys. Extractions started
-through the key spend the same credits as on the site.
+The server uses OAuth: the agent opens Design Extractor in your browser, you
+sign in (or create an account) and approve once, and the agent keeps a token
+it refreshes on its own. Extractions started this way spend the same credits
+as on the site. Connected agents are listed on your
+[Account](https://www.design-extractor.com/account) page, where one click
+disconnects them.
 
-Set the key in the environment of the shell that starts the agent:
-
-```sh
-export DESIGN_EXTRACTOR_API_KEY=dx_...
-```
-
-Put the line in your shell profile to keep it. The plugin's `.mcp.json` reads
-`${DESIGN_EXTRACTOR_API_KEY}` when the server is loaded; the key never lives in
-the repo.
+Scripts and clients that cannot open a browser use a personal API key instead:
+create one in the "API keys" section of the account page and send it as
+`Authorization: Bearer dx_...`. Keys are shown once, expire after one year and
+can be revoked there.
 
 ## Install in Claude Code
 
@@ -47,8 +44,10 @@ the repo.
 /plugin install design-extractor@design-extractor
 ```
 
-Then run `/reload-plugins` if the install summary asks for it, and check `/mcp`
-shows `design-extractor` as connected. The skill is available as
+Then run `/reload-plugins` if the install summary asks for it. In `/mcp`,
+pick `design-extractor` and choose Authenticate: the browser opens the sign-in
+and the consent page; approve, and the server shows as connected. The skill is
+available as
 `/design-extractor:apply-designmd` and Claude also picks it up on its own when
 you ask for a site's design system.
 
@@ -64,12 +63,12 @@ claude plugin install design-extractor@design-extractor
 If you only want the MCP server, add it directly:
 
 ```sh
-claude mcp add --transport http design-extractor https://www.design-extractor.com/api/mcp \
-  --header "Authorization: Bearer dx_..."
+claude mcp add --transport http design-extractor https://www.design-extractor.com/api/mcp
 ```
 
-`claude mcp add` stores the header as given, so paste the key itself here.
-Add `--scope user` to make it available in every project.
+Then `/mcp`, `design-extractor`, Authenticate. Add `--scope user` to make it
+available in every project. To use a key instead, append
+`--header "Authorization: Bearer dx_..."`.
 
 ## Install in Codex
 
@@ -83,23 +82,17 @@ codex plugin add design-extractor@design-extractor
 In the Codex CLI, `/plugins` opens the plugin browser where the marketplace
 entries can also be installed and toggled.
 
-The Codex plugin ships the same `.mcp.json`. Whether Codex expands
-`${DESIGN_EXTRACTOR_API_KEY}` in an MCP header is not documented, so if the
-server shows up unauthenticated, declare it in `~/.codex/config.toml` instead,
-which reads the key from the environment:
+The Codex plugin ships the same `.mcp.json`. If the server shows as needing
+authentication, `codex mcp login design-extractor` opens the sign-in.
 
-```toml
-[mcp_servers.design-extractor]
-url = "https://www.design-extractor.com/api/mcp"
-bearer_token_env_var = "DESIGN_EXTRACTOR_API_KEY"
-```
-
-or from the terminal:
+Without the plugin, one command adds the server and opens the sign-in right
+away:
 
 ```sh
-codex mcp add design-extractor --url https://www.design-extractor.com/api/mcp \
-  --bearer-token-env-var DESIGN_EXTRACTOR_API_KEY
+codex mcp add design-extractor --url https://www.design-extractor.com/api/mcp
 ```
+
+To use a key instead, export it and add `--bearer-token-env-var DESIGN_EXTRACTOR_API_KEY`.
 
 ## Verified against official docs
 

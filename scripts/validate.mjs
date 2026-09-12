@@ -122,7 +122,7 @@ for (const file of [".claude-plugin/plugin.json", ".codex-plugin/plugin.json"]) 
   else {
     requireString(server, file, "type", "http");
     requireString(server, file, "url", MCP_URL);
-    requireString(server.headers ?? {}, file, "Authorization", "Bearer ${DESIGN_EXTRACTOR_API_KEY}");
+    if (server.headers !== undefined) fail(`${file}: no headers; the agent signs in through OAuth`);
   }
 }
 

@@ -18,8 +18,8 @@ dependencies and no runtime code beyond the validation script CI runs.
   one plugin.
 - `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json`: the Codex
   manifests. The marketplace location follows the Codex plugin docs.
-- `.mcp.json`: the remote server, shared by both plugins. The bearer token is
-  `${DESIGN_EXTRACTOR_API_KEY}`, expanded at load time; never write a key here.
+- `.mcp.json`: the remote server, shared by both plugins. No headers: the
+  agent signs in through OAuth on first use; never write a key here.
 - `skills/apply-designmd/SKILL.md`: the skill. Front matter needs `name` and
   `description`; keep the file under 300 lines.
 - `scripts/validate.mjs`: the CI check, plain Node with no dependencies.

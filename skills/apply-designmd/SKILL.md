@@ -21,8 +21,8 @@ to step 2.
 
 Otherwise extract it from the reference site with the `design-extractor` MCP
 server. If the server's tools are not available, stop and tell the user to
-install the plugin and set `DESIGN_EXTRACTOR_API_KEY` (see the plugin README),
-do not try to scrape the site yourself.
+install the plugin and sign in from `/mcp` (see the plugin README); do not try
+to scrape the site yourself.
 
 1. Call `get_pricing` once if the user has not said which tier to use, and
    tell them the cost before spending credits. `LITE` extracts one page and
