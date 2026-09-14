@@ -21,7 +21,7 @@ A DESIGN.md is a design system document: YAML front matter with tokens
 format is described at
 [design-extractor.com/docs/design-md](https://www.design-extractor.com/docs/design-md).
 The agent setup guide for every client is at
-[design-extractor.com/docs/agents](https://www.design-extractor.com/docs/agents).
+[design-extractor.com/docs/mcp](https://www.design-extractor.com/docs/mcp).
 
 ## Sign in
 

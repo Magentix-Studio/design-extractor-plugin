@@ -6,7 +6,7 @@
     "name": "Magentix Studio",
     "url": "https://www.design-extractor.com"
   },
-  "homepage": "https://www.design-extractor.com/docs/agents",
+  "homepage": "https://www.design-extractor.com/docs/mcp",
   "repository": "https://github.com/Magentix-Studio/design-extractor-plugin",
   "license": "MIT",
   "keywords": ["design", "design-system", "design-tokens", "designmd", "tailwind", "mcp"],
